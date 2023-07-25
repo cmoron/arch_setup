@@ -1,0 +1,61 @@
+- hosts: localhost
+  tasks:
+    - name: Clone dotfiles repository
+      git:
+        repo: 'https://github.com/cmoron/dotfiles.git'
+        dest: '/home/cyril/dotfiles'
+
+    - name: Ensure .config directory exist
+      file:
+        path: '/home/cyril/.config'
+        state: directory
+
+    - name: Ensure .local directory exist
+      file:
+        path: '/home/cyril/.local'
+        state: directory
+
+    - name: Apply .bash_profile
+      copy:
+        src: '/home/cyril/dotfiles/.bash_profile'
+        dest: '/home/cyril/.bash_profile'
+        force: yes
+
+    - name: Apply .bashrc
+      copy:
+        src: '/home/cyril/dotfiles/.bashrc'
+        dest: '/home/cyril/.bashrc'
+        force: yes
+
+    - name: Apply .config
+      copy:
+        src: '/home/cyril/dotfiles/.config/'
+        dest: '/home/cyril/.config/'
+        directory_mode: yes
+        force: yes
+
+    - name: Apply .profile
+      copy:
+        src: '/home/cyril/dotfiles/.profile'
+        dest: '/home/cyril/.profile'
+        force: yes
+
+    - name: Apply .local
+      copy:
+        src: '/home/cyril/dotfiles/.local/'
+        dest: '/home/cyril/.local/'
+        directory_mode: yes
+        force: yes
+
+    - name: Apply .xinitrc
+      copy:
+        src: '/home/cyril/dotfiles/.xinitrc'
+        dest: '/home/cyril/.xinitrc'
+        force: yes
+
+    - name: Apply .xprofile
+      copy:
+        src: '/home/cyril/dotfiles/.xprofile'
+        dest: '/home/cyril/.xprofile'
+        force: yes
+
