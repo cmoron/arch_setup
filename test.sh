@@ -119,12 +119,15 @@ dotfiles=(
     .xinitrc
 )
 
+error=false
+
 # Vérifier l'installation des paquets
 for package in "${packages[@]}"; do
-    if docker exec ansible-test-container pacman -Q $package > /dev/null 2>&1; then
+    if docker exec ansible-test-container pacman -Q "$package" > /dev/null 2>&1; then
         echo "Package $package is installed."
     else
         echo "ERROR: Package $package is NOT installed."
+        error=true
     fi
 done
 
@@ -134,5 +137,11 @@ for dotfile in "${dotfiles[@]}"; do
         echo "Dotfile $dotfile exists."
     else
         echo "ERROR: Dotfile $dotfile does NOT exist."
+        error=true
     fi
 done
+
+if [[ "$error" == true ]]; then
+    echo "Errors occurred. Exiting with status 1."
+    exit 1
+fi
