@@ -8,8 +8,8 @@
           - man-db
           - git
           - git-lfs
+          - base-devel
           - vim
-          - gvim
           - openssh
           - wget
           - tree
@@ -81,4 +81,3 @@
           - neofetch
           - chrony
         state: present
-...

@@ -27,12 +27,11 @@
         dest: '/home/cyril/.bashrc'
         force: yes
 
-    - name: Apply .config
-      copy:
+    - name: Synchronize .config directory
+      synchronize:
         src: '/home/cyril/dotfiles/.config/'
         dest: '/home/cyril/.config/'
-        directory_mode: yes
-        force: yes
+        recursive: yes
 
     - name: Apply .profile
       copy:
@@ -40,12 +39,11 @@
         dest: '/home/cyril/.profile'
         force: yes
 
-    - name: Apply .local
-      copy:
+    - name: Synchronize .local directory
+      synchronize:
         src: '/home/cyril/dotfiles/.local/'
         dest: '/home/cyril/.local/'
-        directory_mode: yes
-        force: yes
+        recursive: yes
 
     - name: Apply .xinitrc
       copy:
