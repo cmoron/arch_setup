@@ -9,7 +9,7 @@
           - git
           - git-lfs
           - base-devel
-          - vim
+          - gvim
           - openssh
           - wget
           - tree
